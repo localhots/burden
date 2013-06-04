@@ -1,3 +1,5 @@
+require 'rake'
+
 require 'rake_control/version'
 require 'rake_control/wrapper'
 require File.expand_path('../rake/task', __FILE__)
