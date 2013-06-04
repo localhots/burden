@@ -1,24 +1,34 @@
 # RakeControl
 
-TODO: Write a gem description
+RakeControl is a tool for managing Rake tasks.
 
 ## Installation
 
 Add this line to your application's Gemfile:
-
-    gem 'rake_control'
+```ruby
+gem 'rake_control'
+```
 
 And then execute:
+```
+$ bundle
+```
 
-    $ bundle
+## Configuration
 
-Or install it yourself as:
 
-    $ gem install rake_control
+Add this lines to the top of your application's Rakefile:
+```ruby
+require 'rake_control'
+RakeControl.configure do |c|
+  c.storage = :active_record # or :mongoid, :mongo_mapper
+end
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+stats = Rake::Task['my:task:name'].stats
+stats.log
 
 ## Contributing
 

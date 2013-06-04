@@ -2,13 +2,19 @@ require 'bundler/setup'
 require 'rake'
 require File.expand_path('../rake/task', __FILE__)
 
-require 'rake_control/version'
 require 'rake_control/config'
+require 'rake_control/statistics'
+require 'rake_control/version'
 require 'rake_control/wrapper'
 
 module RakeControl
   def config
     @config ||= Config.new
+  end
+
+  def configure
+    yield config if block_given?
+    config.apply
   end
 
   def wrap(name, description, &block)

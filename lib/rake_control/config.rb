@@ -6,6 +6,12 @@ module RakeControl
       @storage = :active_record
     end
 
+    def apply
+      setup_storage_model
+    end
+
+  private
+
     def setup_storage_model
       case storage
       when :active_record, :activerecord
