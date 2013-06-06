@@ -1,0 +1,7 @@
+/*
+ *= require burden_web/normalize
+ *= require burden_web/foundation.min
+ *= require_self
+*/
+
+a.button { margin: 0; }

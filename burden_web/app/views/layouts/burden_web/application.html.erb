@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Burden</title>
+  <%= stylesheet_link_tag    'burden_web/application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2 class="subheader">Burden Dashboard</h2>
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

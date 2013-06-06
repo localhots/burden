@@ -1,12 +1,12 @@
-# RakeControl
+# Burden
 
-RakeControl is a tool for managing Rake tasks.
+Burden is a tool for managing Rake tasks.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 ```ruby
-gem 'rake_control'
+gem 'burden'
 ```
 
 And then execute:
@@ -16,11 +16,10 @@ $ bundle
 
 ## Configuration
 
-
 Add this lines to the top of your application's Rakefile:
 ```ruby
-require 'rake_control'
-RakeControl.configure do |c|
+require 'burden'
+Burden.configure do |c|
   c.storage = :active_record # or :mongoid, :mongo_mapper
 end
 ```

@@ -1,4 +1,4 @@
-require 'rake_control'
+require 'burden'
 
 RSpec.configure do |config|
   config.formatter = :progress

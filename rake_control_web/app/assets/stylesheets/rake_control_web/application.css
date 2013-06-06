@@ -1,7 +1,0 @@
-/*
- *= require rake_control_web/normalize
- *= require rake_control_web/foundation.min
- *= require_self
-*/
-
-a.button { margin: 0; }

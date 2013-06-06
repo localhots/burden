@@ -3,7 +3,7 @@ module Rake
     alias_method :original_execute, :execute
 
     def execute(args)
-      RakeControl.wrap(name, comment) do
+      Burden.wrap(name, comment) do
         original_execute(args)
       end
     end
