@@ -40,6 +40,7 @@ module RakeControl
     end
 
     def save_statistics
+      Run.create(name: name, success: success, execution_time: execution_time) if defined?(Run)
       puts "Task #{name} #{success ? 'finished successfully' : 'failed'}"
       puts "Execution time: #{execution_time.round(4)}"
     end
