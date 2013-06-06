@@ -19,7 +19,13 @@ module Burden
       end
       save_statistics
 
-      success ? result : raise(exception)
+      unless success
+        Burden.config.trigger_failure_callback(name, execution_time)
+        raise(exception)
+      end
+
+      Burden.config.trigger_success_callback(name, execution_time)
+      result
     end
 
   private
