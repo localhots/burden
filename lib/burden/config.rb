@@ -5,7 +5,7 @@ module Burden
 
     def initialize
       @storage = :active_record
-      @ignored_tasks = [:environment]
+      @ignored_tasks = [/environment/]
     end
 
     module Helper

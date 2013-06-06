@@ -42,7 +42,7 @@ module Burden
     end
 
     def ignored?
-      Burden.config.ignored_tasks.include?(name.to_sym)
+      Burden.config.ignored_tasks.collect{ |r| (name =~ r) ? 1 : 0 }.map(&:to_i).inject(:+) != 0
     end
 
     def save_statistics
