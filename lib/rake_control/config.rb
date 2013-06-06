@@ -1,27 +1,20 @@
 module RakeControl
   class Config
-    attr_accessor :storage
+    attr_accessor :storage,      # Storage backend (ActiveRecord, Mongoid, MongoMapper)
+                  :ignored_tasks # Do not log this tasks (eg. environment task)
 
     def initialize
       @storage = :active_record
+      @ignored_tasks = [:environment]
     end
 
-    def apply
-      setup_storage_model
-    end
+    module Helper
+      def config
+        @config ||= Config.new
+      end
 
-  private
-
-    def setup_storage_model
-      case storage
-      when :active_record, :activerecord
-        require 'rake_control/storage/active_record/rake_control_run'
-      when :mongoid
-        require 'rake_control/storage/mongoid/rake_control_run'
-      when :mongo_mapper, :mongomapper
-        require 'rake_control/storage/mongo_mapper/rake_control_run'
-      else
-        raise Exception.new("Unknown storage: #{storage}")
+      def configure
+        yield config if block_given?
       end
     end
   end

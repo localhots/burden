@@ -3,4 +3,4 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'jquery-rails'
-gem 'rake_control', :path => '..'
+gem 'rake_control', path: '..'

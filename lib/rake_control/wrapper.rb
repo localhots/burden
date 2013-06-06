@@ -10,6 +10,8 @@ module RakeControl
     end
 
     def execute
+      return block.call if ignored?
+
       result = measure_time do
         intercept_exceptions do
           block.call
@@ -39,10 +41,12 @@ module RakeControl
       end
     end
 
+    def ignored?
+      RakeControl.config.ignored_tasks.include?(name.to_sym)
+    end
+
     def save_statistics
-      Run.create(name: name, success: success, execution_time: execution_time) if defined?(Run)
-      puts "Task #{name} #{success ? 'finished successfully' : 'failed'}"
-      puts "Execution time: #{execution_time.round(4)}"
+      Statistics.new(name: name, success: success, execution_time: execution_time).save
     end
   end
 end

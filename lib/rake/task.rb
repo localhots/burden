@@ -7,9 +7,5 @@ module Rake
         original_execute(args)
       end
     end
-
-    def stats
-      RakeControl::Statistics.new(name)
-    end
   end
 end
