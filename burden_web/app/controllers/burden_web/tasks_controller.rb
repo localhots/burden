@@ -16,7 +16,11 @@ module BurdenWeb
 
     def run
       Rails.application.load_tasks
-      Rake::Task[params[:id]].invoke
+      task = Rake::Task[params[:id]]
+
+      task.prerequisite_tasks.each{ |t| t.execute(nil) }
+      task.execute(nil)
+    rescue => e # Gotta catch 'em all!
     ensure
       redirect_to params[:back]
     end

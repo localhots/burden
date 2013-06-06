@@ -1,6 +1,6 @@
 namespace :good do
   desc 'One more good task'
-  task :bar do
+  task :bar => [:foo] do
     'Hey!'
   end
 end

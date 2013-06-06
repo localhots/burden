@@ -1,0 +1,21 @@
+<%= link_to '&larr; Back'.html_safe, tasks_path, class: 'small radius secondary button' %>
+<%= link_to 'Run', run_task_path(params[:task_id], back: task_runs_path(params[:task_id])), class: 'small radius button' %>
+<br><br>
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Timestamp</th>
+      <th>Took</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @runs.each do |run| %>
+    <tr>
+      <td><span class="<%= task_label(run) %> radius label"><%= run.name %></span></td>
+      <td><%= l run.created_at, format: :short %> (<%= time_ago_in_words(run.created_at) %> ago)</td>
+      <td><%= run.execution_time.round(6) %>s</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

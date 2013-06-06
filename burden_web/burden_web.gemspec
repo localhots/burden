@@ -12,8 +12,9 @@ Gem::Specification.new do |s|
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of BurdenWeb."
   s.description = "TODO: Description of BurdenWeb."
+  s.license     = 'MIT'
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency 'rails', '>= 3.2'
   s.add_development_dependency 'burden'
