@@ -6,10 +6,9 @@ Burden Web is a web interface for Burden.
 
 ## Installation
 
-Add this lines to your application's Gemfile:
+Add this line to your application's Gemfile:
 ```ruby
 gem 'burden'
-gem 'burden_web'
 ```
 
 And then execute:
@@ -50,7 +49,22 @@ All configuration options are optional.
 Burden::Storage.run.where(name: 'db:migrate', success: false).order('created_at desc').limit(10)
 ```
 
-See Burden Web instructions to set up its interface.
+## Dashboard
+![Burden Dashboard](http://f.cl.ly/items/0Q0N0E1N2y3P1R2b3M2x/burden_dash.png)
+
+Burden comes with a nice dashboard to view and manage your tasks right from the web.
+
+To install it add this line to your application's Gemfile:
+```ruby
+gem 'burden_web'
+```
+
+Mount Burden's web interface to the path of your choise in `config/routes.rb`:
+```ruby
+Rails.application.routes.draw do
+  mount BurdenWeb::Engine => '/burden'
+end
+```
 
 ## Contributing
 
