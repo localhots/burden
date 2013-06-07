@@ -8,8 +8,10 @@ module Burden
         key :name, String
         key :success, Boolean
         key :execution_time, Float
+        key :timestamp, Time
 
-        scope :summary, ->{ sort(:created_at.desc).group_by(&:name) }
+        scope :summary, ->{ sort(:timestamp.desc).group_by(&:name) }
+        scope :history, ->(task_name){ where(name: task_name).sort(:timestamp.desc).group_by(&:name) }
       end
     end
   end

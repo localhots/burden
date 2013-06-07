@@ -13,7 +13,7 @@
     <% @runs.each do |run| %>
     <tr>
       <td><span class="<%= task_label(run) %> radius label"><%= run.name %></span></td>
-      <td><%= l run.created_at, format: :short %> (<%= time_ago_in_words(run.created_at) %> ago)</td>
+      <td><%= l run.timestamp, format: :short %> (<%= time_ago_in_words(run.timestamp) %> ago)</td>
       <td><%= run.execution_time.round(6) %>s</td>
     </tr>
     <% end %>

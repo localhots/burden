@@ -1,12 +1,12 @@
 module Burden
   class Wrapper
-    attr_reader :name, :description, :block, :success, :exception, :execution_time
+    attr_reader :name, :block, :success, :exception, :execution_time, :timestamp
 
-    def initialize(name, description, block)
+    def initialize(name, block)
       @name = name
-      @description = description
       @block = block
       @success = true
+      @timestamp = Time.now.utc
     end
 
     def execute
@@ -20,11 +20,11 @@ module Burden
       save_statistics
 
       unless success
-        Burden.config.trigger_failure_callback(name, execution_time)
+        Burden.config.trigger_failure_callback(name, execution_time, timestamp)
         raise(exception)
       end
 
-      Burden.config.trigger_success_callback(name, execution_time)
+      Burden.config.trigger_success_callback(name, execution_time, timestamp)
       result
     end
 
@@ -52,7 +52,7 @@ module Burden
     end
 
     def save_statistics
-      Statistics.new(name: name, success: success, execution_time: execution_time).save
+      Statistics.new(name: name, success: success, execution_time: execution_time, timestamp: timestamp).save
     end
   end
 end

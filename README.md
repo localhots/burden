@@ -29,10 +29,14 @@ require 'burden'
 Burden.configure do |c|
   c.storage = :active_record # or :mongoid, :mongo_mapper
   c.ignored_tasks = [/^db:/, /environment/]
-  c.on_failure = ->(task_name, execution_time){
+  c.on_failure = ->(task_name, execution_time, timestamp){
     Mail.new(to: me,
       subject: "Task #{task_name} failed!",
-      body: "Current time: #{Time.now}\nExecution time: #{execution_time}s"
+      body: <<-MSG
+        Started at: #{timestamp}
+        Execution time: #{execution_time}s
+        Status: FAILED
+      MSG
     ).send
   }
 end

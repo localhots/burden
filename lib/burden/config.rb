@@ -10,12 +10,12 @@ module Burden
       @ignored_tasks = [/environment/]
     end
 
-    def trigger_success_callback(name, execution_time)
-      on_success.send(name, execution_time) unless on_success.nil?
+    def trigger_success_callback(name, execution_time, timestamp)
+      on_success.send(name, execution_time, timestamp) unless on_success.nil?
     end
 
-    def trigger_failure_callback(name, execution_time)
-      on_failure.send(name, execution_time) unless on_failure.nil?
+    def trigger_failure_callback(name, execution_time, timestamp)
+      on_failure.send(name, execution_time, timestamp) unless on_failure.nil?
     end
 
     module Helper

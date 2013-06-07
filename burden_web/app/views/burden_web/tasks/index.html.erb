@@ -12,8 +12,8 @@
     <% @tasks.each do |run| %>
     <tr>
       <td><span class="<%= task_label(run) %> radius label"><%= run.name %></span></td>
-      <% if run.created_at %>
-        <td><%= time_ago_in_words(run.created_at) %> ago</td>
+      <% if run.timestamp %>
+        <td><%= time_ago_in_words(run.timestamp) %> ago</td>
         <td><%= run.execution_time.round(6) %>s</td>
         <td><%= link_to 'Run', run_task_path(run.name, back: tasks_path), class: 'small radius button' %></td>
         <td><%= link_to 'History', task_runs_path(run.name), class: 'secondary small radius button' %></td>

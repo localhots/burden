@@ -4,7 +4,7 @@ class CreateBurdenRuns < ActiveRecord::Migration
       t.string :name
       t.boolean :success
       t.float :execution_time
-      t.timestamps
+      t.datetime :timestamp
     end
   end
 
