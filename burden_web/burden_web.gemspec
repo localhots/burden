@@ -1,24 +1,23 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
+require 'burden_web/version'
 
-# Maintain your gem's version:
-require "burden_web/version"
+Gem::Specification.new do |spec|
+  spec.name        = 'burden_web'
+  spec.version     = BurdenWeb::VERSION
+  spec.authors     = ['Gregory Eremin']
+  spec.email       = ['magnolia_fan@me.com']
+  spec.summary     = 'A web interface for Burden'
+  spec.description = 'Burden is a manager and statistics collector for Rake tasks. It comes with this web interface.'
+  spec.homepage    = 'https://github.com/magnolia-fan/burden'
+  spec.license     = 'MIT'
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = "burden_web"
-  s.version     = BurdenWeb::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of BurdenWeb."
-  s.description = "TODO: Description of BurdenWeb."
-  s.license     = 'MIT'
+  spec.files       = `git ls-files`.split($/)
+  spec.executables = spec.files.grep(/^bin\//){ |f| File.basename(f) }
+  spec.test_files  = spec.files.grep(/^spec\//)
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
+  spec.add_dependency 'rails', '>= 3.2'
+  spec.add_development_dependency 'burden', "= #{BurdenWeb::VERSION}"
 
-  s.add_dependency 'rails', '>= 3.2'
-  s.add_development_dependency 'burden'
-
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'awesome_print'
+  spec.add_development_dependency 'sqlite3', '>= 0'
+  spec.add_development_dependency 'awesome_print', '>= 0'
 end

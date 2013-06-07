@@ -14,6 +14,7 @@ gem 'burden'
 And then execute:
 ```
 $ bundle
+$ bundle exec rails generate burden:install
 ```
 
 ## Configuration
