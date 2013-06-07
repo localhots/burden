@@ -1,6 +1,8 @@
 require 'bundler/setup'
+
 require 'rake'
-require File.expand_path('../rake/task', __FILE__)
+require 'rake/task'
+require 'rake_ext/task'
 
 require 'burden/config'
 require 'burden/statistics'
