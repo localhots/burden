@@ -8,6 +8,8 @@ module Burden
         field :name, type: String
         field :success, type: Boolean
         field :execution_time, type: Float
+
+        scope :summary, ->{ sort(created_at: -1).group_by(&:name) }
       end
     end
   end

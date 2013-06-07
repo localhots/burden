@@ -11,8 +11,8 @@ require 'burden/wrapper'
 module Burden
   include Config::Helper
 
-  def wrap(name, description, &block)
-    Wrapper.new(name, description, block).execute
+  def wrap(name, &block)
+    Wrapper.new(name, block).execute
   end
 
   extend self

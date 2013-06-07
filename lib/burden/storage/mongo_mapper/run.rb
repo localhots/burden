@@ -8,6 +8,8 @@ module Burden
         key :name, String
         key :success, Boolean
         key :execution_time, Float
+
+        scope :summary, ->{ sort(:created_at.desc).group_by(&:name) }
       end
     end
   end
