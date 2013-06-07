@@ -1,5 +1,5 @@
 class CreateBurdenRuns < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :burden_runs do |t|
       t.string :name
       t.boolean :success
@@ -8,7 +8,7 @@ class CreateBurdenRuns < ActiveRecord::Migration
     end
   end
 
-  def down
+  def self.down
     drop_table :burden_runs
   end
 end
