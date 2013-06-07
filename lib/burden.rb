@@ -8,8 +8,6 @@ require 'burden/storage'
 require 'burden/version'
 require 'burden/wrapper'
 
-# require 'generators/burden/install_generator'
-
 module Burden
   include Config::Helper
 

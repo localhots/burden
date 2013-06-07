@@ -1,8 +1,9 @@
 Description:
-    Explain the generator
+    Generates Burden migration and initializer
 
 Example:
-    rails generate install Thing
+    rails generate burden:install
 
     This will create:
-        what/will/it/create
+        config/initializers/burden.rb
+        db/migrate/create_burden_runs.rb
