@@ -16,7 +16,7 @@ module Burden
         ActiveRecord::Base.establish_connection(conf)
 
         begin
-          Storage.run.create(name: name, success: success, execution_time: execution_time, timestamp: timestamp)
+          Burden.runs.create(name: name, success: success, execution_time: execution_time, timestamp: timestamp)
         rescue
           log_to_stdout(:failed)
         end

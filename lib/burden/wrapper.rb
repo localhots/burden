@@ -54,5 +54,11 @@ module Burden
     def save_statistics
       Statistics.new(name: name, success: success, execution_time: execution_time, timestamp: timestamp).save
     end
+
+    module Helper
+      def wrap(name, &block)
+        Wrapper.new(name, block).execute
+      end
+    end
   end
 end

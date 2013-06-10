@@ -1,10 +1,10 @@
 module BurdenWeb
   class TasksController < ApplicationController
     def index
-      @tasks = Burden::Storage.run.summary
-      (tasks.map(&:name) - @tasks.map(&:name)).each do |nr_task| # Never runned tasks
+      @tasks = Burden.runs.summary
+      (rake_tasks.map(&:name) - @tasks.map(&:name)).each do |nr_task| # Never runned tasks
         next if ignore? nr_task
-        @tasks << Burden::Storage.run.new(
+        @tasks << Burden.runs.new(
           name: nr_task
         )
       end
