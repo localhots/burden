@@ -1,5 +1,5 @@
 module Burden
-  module Storage
+  module StorageBackends
     module Abstract
       class Run
         attr_accessor :name, :success, :execution_time, :timestamp

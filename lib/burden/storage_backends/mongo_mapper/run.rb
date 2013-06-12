@@ -1,5 +1,5 @@
 module Burden
-  module Storage
+  module StorageBackends
     module MongoMapper
       class Run
         include ::MongoMapper::Document

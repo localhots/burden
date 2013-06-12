@@ -1,12 +1,15 @@
 module Burden
   class Config
-    attr_accessor :storage,       # Storage backend (ActiveRecord, Mongoid, MongoMapper)
-                  :ignored_tasks, # Do not log this tasks (eg. environment task)
-                  :on_success,    # Success callback (expected to be a Proc)
-                  :on_failure     # Failure callback (expected to be a Proc)
+    attr_accessor :storage,        # Storage backend (ActiveRecord, Mongoid, MongoMapper)
+                  :storage_config, # Config needed to initialize storage
+                  :log_file,       # Log file
+                  :ignored_tasks,  # Do not log this tasks (eg. environment task)
+                  :on_success,     # Success callback (expected to be a Proc)
+                  :on_failure      # Failure callback (expected to be a Proc)
 
     def initialize
       @storage = :active_record
+      @log_file = 'tmp/rake.log'
       @ignored_tasks = [/environment/]
     end
 

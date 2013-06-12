@@ -1,18 +1,18 @@
 module Burden
   module Storage
     module Helper
-      def runs
-        @storage_class ||= begin
+      def storage
+        @storage ||= begin
           case Burden.config.storage
           when :active_record, :activerecord
-            require 'burden/storage/active_record/run'
-            Burden::Storage::ActiveRecord::Run
+            require 'burden/storage_backends/active_record_backend'
+            Burden::StorageBackends::ActiveRecordBackend.new(Burden.config.storage_config)
           when :mongoid
-            require 'burden/storage/mongoid/run'
-            Burden::Storage::Mongoid::Run
+            require 'burden/storage_backends/mongoid_backend'
+            Burden::StorageBackends::MongoidBackend.new(Burden.config.storage_config)
           when :mongo_mapper, :mongomapper
-            require 'burden/storage/mongo_mapper/run'
-            Burden::Storage::MongoMapper::Run
+            require 'burden/storage_backends/mongo_mapper_backend'
+            Burden::StorageBackends::MongoMapperBackend.new(Burden.config.storage_config)
           else
             raise Exception.new("Unknown storage: #{storage}")
           end

@@ -17,7 +17,11 @@ module Burden
           block.call
         end
       end
-      save_statistics
+
+      begin
+        save_statistics
+      rescue => e
+      end
 
       unless success
         Burden.config.trigger_failure_callback(name, execution_time, timestamp)

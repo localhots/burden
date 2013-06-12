@@ -10,32 +10,27 @@ module Burden
     end
 
     def save
-      if defined?(Rails) && Rails.respond_to?(:application) && Rails.application.present?
-        # FIXME: Dirty stuff
-        conf = Rails.configuration.database_configuration[Rails.env]
-        ActiveRecord::Base.establish_connection(conf)
+      # FIXME
+      # if Burden.storage.ready?
+      #   Burden.storage.runs.create(name: name, success: success, execution_time: execution_time, timestamp: timestamp)
+      # end
 
-        begin
-          Burden.runs.create(name: name, success: success, execution_time: execution_time, timestamp: timestamp)
-        rescue
-          log_to_stdout(:failed)
-        end
-      else
-        log_to_stdout(:no_rails)
+      File.open(Burden.config.log_file, 'a') do |f|
+        f.write(log_message)
+        f.close
       end
     end
 
-    def log_to_stdout(reason = :no_rails)
-      puts
-      puts "------------------------------------------------------------"
-      case reason
-      when :no_rails
-        puts "Rails environment is not loaded. Sending output to STDOUT"
-      when :failed
-        puts "Failed to persist this run. Sending output to STDOUT"
-      end
-      puts "Task #{name} #{success ? 'finished successfully' : 'failed'}"
-      puts "Execution time: #{execution_time.round(4)}"
+  private
+
+    def log_message
+<<-TEXT
+Timestamp: #{timestamp}
+Task: #{name}
+Execution #{success ? 'finished successfully' : 'failed'}
+Execution time: #{execution_time.round(4)}
+
+TEXT
     end
   end
 end

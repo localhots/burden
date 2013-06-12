@@ -1,5 +1,5 @@
 module Burden
-  module Storage
+  module StorageBackends
     module ActiveRecord
       class Run < ::ActiveRecord::Base
         self.table_name = 'burden_runs'

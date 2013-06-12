@@ -1,5 +1,5 @@
 module Burden
-  module Storage
+  module StorageBackends
     module Mongoid
       class Run
         include ::Mongoid::Document
